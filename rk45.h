@@ -4,15 +4,15 @@ const int stage_num = 7; //number of stages
 //equations of motion for particle x2 (right) in field of particle x1 (left)
 double RHS(int n,double t,double x,double y,double gamma,double ux,double uy)
 {
-  const int Z = 79;
-  const double k = 97962.95;
-  const double g = 1.0; 
+  const int Z = 6;
+  const double k = 0.0;//3355636.0;
+  const double g = 100.0; 
   
   double r2 = 4.0*(gamma*gamma*x*x+y*y);
-  double root = sqrt(1.0+k*k/(g*g*r2*r2*r2)*4.0*(x*x+y*y/(gamma*gamma)));
+  double root = sqrt(1.0+(k*k)/(g*g*r2*r2));
   double Dx = 2.0*gamma*x/sqrt(r2*r2*r2);
   double Dy = 2.0*gamma*y/sqrt(r2*r2*r2);
-  double Hz = -2.0*gamma*ux*y/sqrt(r2*r2*r2);
+  double Hz = -2.0*ux*y/sqrt(r2*r2*r2);
   double Ex = Dx/root;
   double Ey = Dy/root;
   double Bz = Hz/root;
